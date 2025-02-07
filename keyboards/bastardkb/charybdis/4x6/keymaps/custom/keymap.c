@@ -94,8 +94,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_LSFT,    KC_B,    PT_Z,    KC_X,    KC_C,    KC_V,       KC_N,    KC_M, KC_COMM,  KC_DOT, PT_SLSH, KC_RSFT,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                  KC_LCTL, KC_LALT,  KC_SPC,     KC_ENT, KC_RCTL,
-                                           KC_LGUI,   LOWER,      RAISE
+                                  KC_LCTL,   LOWER,  KC_SPC,     KC_ENT,   RAISE,
+                                           KC_LGUI, KC_LALT,    KC_RCTL
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -109,8 +109,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_LSFT,    KC_B,    PT_Z,    KC_X,    KC_C,    KC_V,       KC_N,    KC_M, KC_COMM,  KC_DOT, PT_SLSH, KC_RSFT,
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                                  KC_LCTL, KC_LALT,  KC_SPC,     KC_ENT, KC_RCTL,
-                                           KC_LGUI,   LOWER,      RAISE
+                                  KC_LCTL,   LOWER,  KC_SPC,     KC_ENT,   RAISE,
+                                           KC_LGUI, KC_LALT,    KC_RCTL
   //                            ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -254,6 +254,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 // clang-format on
+
+#ifdef RGB_MATRIX_ENABLE
+
+led_config_t g_led_config = { {
+  // Key Matrix to LED Index
+  {  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11  },
+  { 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23  },
+  { 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35  },
+  { 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47  },
+  { NO_LED, NO_LED, NO_LED, 48, 49, 50, 51, 52, NO_LED, NO_LED, NO_LED, NO_LED  },
+  { NO_LED, NO_LED, NO_LED, NO_LED, 53, 54, 55, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED  },
+}, {
+  // LED Index to Physical Position
+  { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  },
+  { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  },
+  { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  },
+  { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  }, { ,  },
+  { ,  }, { ,  }, { ,  }, { ,  }, { ,  },
+  { ,  }, { ,  }, { ,  }
+}, {
+  // LED Index to Flag
+  1, 4, 4, 4, 4, 1
+} };
+
+#endif
 
 #ifdef POINTING_DEVICE_ENABLE
 #    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
