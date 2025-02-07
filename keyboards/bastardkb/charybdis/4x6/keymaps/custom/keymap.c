@@ -256,7 +256,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // clang-format on
 
 #ifdef RGB_MATRIX_ENABLE
-
+/*
 led_config_t g_led_config = { {
   // Key Matrix to LED Index
   {  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11  },
@@ -277,7 +277,7 @@ led_config_t g_led_config = { {
   // LED Index to Flag
   1, 4, 4, 4, 4, 1
 } };
-
+*/
 #endif
 
 #ifdef POINTING_DEVICE_ENABLE
